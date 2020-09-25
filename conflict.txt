@@ -1,0 +1,118 @@
+cscuser@DESKTOP-HP35112 MINGW64 /E
+$ mkdir git-merge-test
+
+cscuser@DESKTOP-HP35112 MINGW64 /E
+$ cd git-merge-test
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test
+$ git init
+Initialized empty Git repository in E:/git-merge-test/.git/
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ echo "this is some content to mess with" > merge.txt
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ git add merge.txt
+warning: LF will be replaced by CRLF in merge.txt.
+The file will have its original line endings in your working directory
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ git commit -am "we are commiting the inital content"
+[master (root-commit) 54ff9cf] we are commiting the inital content
+ Committer: CompSc User <cscuser@DESKTOP-HP35112.cssamba.jfn.ac.lk>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 merge.txt
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ git checkout -b new_branch_to_merge_later
+Switched to a new branch 'new_branch_to_merge_later'
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (new_branch_to_merge_later)
+$ echo "totally different content to merge later" > merge.txt
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (new_branch_to_merge_later)
+$ git commit -am "edited the content of merge.txt to cause a conflict"
+warning: LF will be replaced by CRLF in merge.txt.
+The file will have its original line endings in your working directory
+[new_branch_to_merge_later cdc0a51] edited the content of merge.txt to cause a conflict
+ Committer: CompSc User <cscuser@DESKTOP-HP35112.cssamba.jfn.ac.lk>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (new_branch_to_merge_later)
+$ git checkout master
+Switched to branch 'master'
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ echo "content to append" >> merge.txt
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ git commit -am"appended content to merge.txt"
+warning: LF will be replaced by CRLF in merge.txt.
+The file will have its original line endings in your working directory
+[master 0fae14d] appended content to merge.txt
+ Committer: CompSc User <cscuser@DESKTOP-HP35112.cssamba.jfn.ac.lk>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ git merge new_branch_to_merge_later
+Auto-merging merge.txt
+CONFLICT (content): Merge conflict in merge.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master|MERGING)
+$ vi merge.txt
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master|MERGING)
+$ git commit -am "conflict resolved merge.txt"
+[master 8a69e8e] conflict resolved merge.txt
+ Committer: CompSc User <cscuser@DESKTOP-HP35112.cssamba.jfn.ac.lk>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ git config --global user.name sreesangameera
+
+cscuser@DESKTOP-HP35112 MINGW64 /E/git-merge-test (master)
+$ git config --global user.email sreesangameera24@gmail.com
